@@ -1,25 +1,29 @@
 'use strict';
-
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = +prompt('Сколько фильмов Вы уже посмотрели?', '');
-    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt('Сколько фильмов Вы уже посмотрели?', '');
-    }
-}
-start();
-
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: true,
-
-};
-
-function rememberMyFilms() {
+    start: function() {
+        personalMovieDB.count = +prompt('Сколько фильмов Вы уже посмотрели?', '');
+        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt('Сколько фильмов Вы уже посмотрели?', '');
+        }
+    },
+    toggleVisibleMyBD: function () {
+        if (personalMovieDB.privat) {
+            personalMovieDB.privat = false;
+        } else if (!personalMovieDB.privat){
+            personalMovieDB.privat = true;
+        }
+    },
+    showMyBD: function(x) {
+    if (!x) {
+        console.log(personalMovieDB);
+    }
+    },
+    rememberMyFilms: function() {
     for (let i = 0; i < 2; i++){
         let a = prompt('Один из последних просмотренных фильмов?', ''),
             b = prompt('На сколько вы его оцениваете?', '');
@@ -31,11 +35,24 @@ function rememberMyFilms() {
             console.log('not value');
             i--;
         } 
-    }
-}
-rememberMyFilms();
-
-function detectPrsonalLevel() {
+    }},
+    writeYourGenres: function() {
+    for (let i = 1; i <= 3; i++){
+        let a = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        if (a != null && a != '') {
+             personalMovieDB.genres[i - 1] = a;
+            console.log('+');
+           
+        } else {
+            i--;
+            console.log('-');
+        } 
+    }   
+        personalMovieDB.genres.forEach((item, i) => {
+        console.log(`Любимый жанр №${i + 1}. - это ${item}!`);
+        });
+    },
+    detectPrsonalLevel: function() {
         if (personalMovieDB.count >= 0 && personalMovieDB.count < 10) {
         console.log('Вы смотрите очень мало фильмов!');
     } else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
@@ -45,20 +62,9 @@ function detectPrsonalLevel() {
     } else {
         console.log('error!!!');
     }
-}
-detectPrsonalLevel();
-
-function showMyBD(hidden) {
-    if (!hidden) {
-        console.log(personalMovieDB);
     }
-}
-showMyBD(personalMovieDB.privat);
+};
 
-function writeYourGenres() {
-    for (let i = 0; i < 3; i++){
-        personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i + 1}`, '');
-    }
-}
-writeYourGenres();
-console.log(personalMovieDB);
+
+
+
