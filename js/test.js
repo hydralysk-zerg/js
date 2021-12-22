@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // // // function learnJS(lang, callback) {
 // // //     console.log(`я учу: ${lang}`);
