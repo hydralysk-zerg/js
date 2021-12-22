@@ -48,12 +48,12 @@
 
 
 
-// // const arr = [1, 12, 31, 34, 5, 86, 7];
-// // arr.sort(compareNum);
-// // console.log(arr);
-// // function compareNum(a, b) {
-// //     return a - b;
-// // }
+// const arr = ['a', 'b', 'e', 'c', 'd'];
+// arr.sort();
+// console.log(arr);
+// function compareNum(a, b) {
+//     return a - b;
+// }
 // //arr.forEach(function (item, i, arr) {
 // //    console.log(`${i}: ${item} внутри массива ${arr}`);
 // // });
